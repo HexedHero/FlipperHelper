@@ -110,9 +110,9 @@ namespace HexedHero.Blish_HUD.FlipperHelper
 
             };
 
-            CreateCoinControls(ECoinType.GOLD, coinGoldTexture, 10, 20, ref goldBuyTextBox);
-            CreateCoinControls(ECoinType.SILVER, coinSilverTexture, 110, 20, ref silverBuyTextBox);
-            CreateCoinControls(ECoinType.COPPER, coinCopperTexture, 185, 20, ref copperBuyTextBox);
+            CreateCoinControl(ECoinType.GOLD, coinGoldTexture, 10, 20, ref goldBuyTextBox);
+            CreateCoinControl(ECoinType.SILVER, coinSilverTexture, 110, 20, ref silverBuyTextBox);
+            CreateCoinControl(ECoinType.COPPER, coinCopperTexture, 185, 20, ref copperBuyTextBox);
 
             // Sell row
             sellLabel = new Label()
@@ -126,9 +126,9 @@ namespace HexedHero.Blish_HUD.FlipperHelper
 
             };
 
-            CreateCoinControls(ECoinType.GOLD, coinGoldTexture, 10, 75, ref goldSellTextBox);
-            CreateCoinControls(ECoinType.SILVER, coinSilverTexture, 110, 75, ref silverSellTextBox);
-            CreateCoinControls(ECoinType.COPPER, coinCopperTexture, 185, 75, ref copperSellTextBox);
+            CreateCoinControl(ECoinType.GOLD, coinGoldTexture, 10, 75, ref goldSellTextBox);
+            CreateCoinControl(ECoinType.SILVER, coinSilverTexture, 110, 75, ref silverSellTextBox);
+            CreateCoinControl(ECoinType.COPPER, coinCopperTexture, 185, 75, ref copperSellTextBox);
 
             // Profit row
             profitLabel = new Label()
@@ -172,7 +172,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper
 
         }
 
-        private void CreateCoinControls(ECoinType coinType, Texture2D coinTexture, int x, int y, ref TextBox textBox)
+        private void CreateCoinControl(ECoinType coinType, Texture2D coinTexture, int x, int y, ref TextBox textBox)
         {
 
             disposableBin.Add(new Image(coinTexture)
