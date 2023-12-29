@@ -64,7 +64,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper
         {
 
             // Load needed textures
-            iconTexture = ContentsManager.GetTexture("779571_yellowed.png");
+            iconTexture = ContentsManager.GetTexture("779571_modified.png");
             emblemTexture = ContentsManager.GetTexture("779571.png");
             backgroundTexture = ContentsManager.GetTexture("155985.png");
             coinGoldTexture = ContentsManager.GetTexture("coin_gold.png");
