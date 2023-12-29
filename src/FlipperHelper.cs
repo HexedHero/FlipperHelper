@@ -11,7 +11,8 @@ using Image = Blish_HUD.Controls.Image;
 using Color = Microsoft.Xna.Framework.Color;
 using Point = Microsoft.Xna.Framework.Point;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
-using System.Threading;
+using HexedHero.Blish_HUD.FlipperHelper.Enums;
+using HexedHero.Blish_HUD.FlipperHelper.Utils;
 
 namespace HexedHero.Blish_HUD.FlipperHelper
 {
