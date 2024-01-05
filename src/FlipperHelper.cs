@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using HexedHero.Blish_HUD.FlipperHelper.Enums;
 using HexedHero.Blish_HUD.FlipperHelper.Utils;
+using HexedHero.Blish_HUD.FlipperHelper.Objects;
+using Blish_HUD.Settings;
 
 namespace HexedHero.Blish_HUD.FlipperHelper
 {
@@ -18,12 +20,14 @@ namespace HexedHero.Blish_HUD.FlipperHelper
     public class FlipperHelper : Module
     {
 
-        private static readonly Logger Logger = Logger.GetLogger<FlipperHelper>();
+        internal static FlipperHelper Instance;
 
         internal SettingsManager SettingsManager => this.ModuleParameters.SettingsManager;
         internal ContentsManager ContentsManager => this.ModuleParameters.ContentsManager;
         internal DirectoriesManager DirectoriesManager => this.ModuleParameters.DirectoriesManager;
         internal Gw2ApiManager Gw2ApiManager => this.ModuleParameters.Gw2ApiManager;
+
+        public Settings Settings { get; private set; }
 
         private CornerIcon cornerIcon;
         private StandardWindow flipWindow;
@@ -55,7 +59,25 @@ namespace HexedHero.Blish_HUD.FlipperHelper
         private readonly List<IDisposable> disposableBin = new List<IDisposable>();
 
         [ImportingConstructor]
-        public FlipperHelper([Import("ModuleParameters")] ModuleParameters moduleParameters) : base(moduleParameters) {  }
+        public FlipperHelper([Import("ModuleParameters")] ModuleParameters moduleParameters) : base(moduleParameters)
+        {
+
+            Instance = this;
+        
+        }
+
+        protected override void DefineSettings(SettingCollection settings)
+        {
+
+            Settings = new Settings(settings);
+            Settings.CloseWindowOnESC.SettingChanged += delegate
+            {
+
+                flipWindow.CanCloseWithEscape = Settings.CloseWindowOnESC.Value;
+
+            };
+
+        }
 
         protected override void Initialize()
         {
@@ -325,6 +347,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper
                 disposable?.Dispose();
 
             }
+            Instance = null;
 
         }
 
