@@ -115,7 +115,8 @@ namespace HexedHero.Blish_HUD.FlipperHelper
                 Location = new Point(100, 100),
                 SavesPosition = true,
                 Id = "FlipperHelperCalculateWindow",
-                Parent = GameService.Graphics.SpriteScreen
+                Parent = GameService.Graphics.SpriteScreen,
+                CanCloseWithEscape = Settings.CloseWindowOnESC.Value
 
             };
 
