@@ -21,13 +21,19 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
         public SettingCollection Settings { get; private set; }
         public ModuleSettings ModuleSettings { get; private set; }
 
-        private ModuleSettingsManager() { }
+        private ModuleSettingsManager()
+        {
 
-        public void Load() { }
+            Load();
+
+        }
+
+        private void Load() { }
 
         public void Unload()
         {
 
+            // Reset instance
             instance = null;
 
         }

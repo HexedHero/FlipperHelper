@@ -13,9 +13,12 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
 
         // Singleton
         private static Lazy<WindowManager> instance = new Lazy<WindowManager>(() => new WindowManager());
-        public static WindowManager Instance {
-            get {
-                if (instance == null) {
+        public static WindowManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
                     instance = new Lazy<WindowManager>(() => new WindowManager());
                 }
                 return instance.Value;
@@ -36,9 +39,14 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
         private Texture2D backgroundTexture;
         private Texture2D backgroundTextureResized;
 
-        private WindowManager() { }
+        private WindowManager()
+        {
 
-        public void Load()
+            Load();
+
+        }
+
+        private void Load()
         {
 
             // Load needed textures
@@ -111,6 +119,9 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
             CalculatorView?.DoUnload();
             ModuleSettingsView?.DoUnload();
             SettingRedirectView?.DoUnload();
+            CalculatorView = null;
+            ModuleSettingsView = null;
+            SettingRedirectView = null;
 
             // Textures
             iconTexture?.Dispose();
@@ -120,6 +131,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
             backgroundTexture?.Dispose();
             backgroundTextureResized?.Dispose();
 
+            // Reset instance
             instance = null;
 
         }

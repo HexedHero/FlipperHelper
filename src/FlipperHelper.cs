@@ -37,8 +37,8 @@ namespace HexedHero.Blish_HUD.FlipperHelper
         {
 
             // Load managers
-            WindowManager.Instance.Load();
-            ModuleSettingsManager.Instance.Load();
+            _ = WindowManager.Instance;
+            _ = ModuleSettingsManager.Instance;
 
         }
 
