@@ -1,25 +1,28 @@
 ﻿using Blish_HUD.Controls;
 using Blish_HUD.Graphics.UI;
+using HexedHero.Blish_HUD.FlipperHelper.Managers;
 
 namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 {
 
-    class SettingRedirectView : View
+    public class SettingRedirectView : View
     {
+
+        StandardButton RedirectButton;
 
         public SettingRedirectView() { }
 
         protected override void Unload()
         {
 
-            base.Unload();
+            RedirectButton?.Dispose();
 
         }
 
         protected override void Build(Container buildPanel)
         {
 
-            StandardButton redirectButton = new StandardButton()
+            RedirectButton = new StandardButton()
             {
 
                 Text = "Open Settings",
@@ -29,11 +32,11 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 
             };
 
-            redirectButton.Click += delegate
+            RedirectButton.Click += delegate
             {
 
-                FlipperHelper.Instance.MainWindow.Show();
-                FlipperHelper.Instance.MainWindow.SelectedTab = FlipperHelper.Instance.MainWindow.Tabs.FromIndex(1);
+                WindowManager.Instance.MainWindow.Show();
+                WindowManager.Instance.MainWindow.SelectedTab = WindowManager.Instance.MainWindow.Tabs.FromIndex(1);
 
             };
 

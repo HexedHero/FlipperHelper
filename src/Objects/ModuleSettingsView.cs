@@ -2,6 +2,7 @@
 using Blish_HUD.Graphics.UI;
 using Blish_HUD.Settings;
 using Blish_HUD.Settings.UI.Views;
+using HexedHero.Blish_HUD.FlipperHelper.Managers;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -16,7 +17,6 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
         protected override void Unload()
         {
 
-            base.Unload();
 
         }
 
@@ -60,7 +60,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
             };
 
             // Add the settings into the panel
-            List<SettingEntry> closeBehaviourSettings = FlipperHelper.Instance.ModuleSettings.CloseBehaviourSettings;
+            List<SettingEntry> closeBehaviourSettings = ModuleSettingsManager.Instance.ModuleSettings.CloseBehaviourSettings;
             foreach (SettingEntry settingEntry in closeBehaviourSettings)
             {
 

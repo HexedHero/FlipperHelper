@@ -36,9 +36,9 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
         public CalculatorView()
         {
 
-            coinGoldTexture = FlipperHelper.Instance.ContentsManager.GetTexture("coin_gold.png");
-            coinSilverTexture = FlipperHelper.Instance.ContentsManager.GetTexture("coin_silver.png");
-            coinCopperTexture = FlipperHelper.Instance.ContentsManager.GetTexture("coin_copper.png");
+            coinGoldTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_gold.png");
+            coinSilverTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_silver.png");
+            coinCopperTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_copper.png");
 
         }
 
@@ -61,8 +61,6 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
             buyLabel?.Dispose();
             sellLabel?.Dispose();
             profitLabel?.Dispose();
-
-            base.Unload();
 
         }
 
