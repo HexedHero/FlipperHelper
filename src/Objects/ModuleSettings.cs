@@ -32,7 +32,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
                     nameof(ResetOnWindowClosure),
                     false,
                     () => "Reset on Closure",
-                    () => "Should all values be reset when the window is closed?"
+                    () => "Should all calculator values be reset when the window is closed?"
                 )
             );
 
