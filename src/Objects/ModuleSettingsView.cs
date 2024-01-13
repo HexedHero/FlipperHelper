@@ -13,6 +13,13 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 
         public ModuleSettingsView() { }
 
+        protected override void Unload()
+        {
+
+            base.Unload();
+
+        }
+
         protected override void Build(Container container)
         {
 

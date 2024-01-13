@@ -7,6 +7,15 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
     class SettingRedirectView : View
     {
 
+        public SettingRedirectView() { }
+
+        protected override void Unload()
+        {
+
+            base.Unload();
+
+        }
+
         protected override void Build(Container buildPanel)
         {
 
