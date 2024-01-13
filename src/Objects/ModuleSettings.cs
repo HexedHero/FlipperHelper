@@ -23,7 +23,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
                     nameof(CloseWindowOnESC),
                     true,
                     () => "Allow ESC Closure",
-                    () => "Should the window close when you press ESC or not?"
+                    () => "Should the window close when you press ESC or not?\n\nWarning: BlishHUD's \"Close Window on Escape\" can override this."
                 )
             );
 
