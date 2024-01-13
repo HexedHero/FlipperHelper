@@ -25,7 +25,8 @@ namespace HexedHero.Blish_HUD.FlipperHelper
         internal DirectoriesManager DirectoriesManager => this.ModuleParameters.DirectoriesManager;
         internal Gw2ApiManager Gw2ApiManager => this.ModuleParameters.Gw2ApiManager;
 
-        public Settings Settings { get; private set; }
+        public SettingCollection Settings { get; private set; }
+        public ModuleSettings ModuleSettings { get; private set; }
         public TabbedWindow2 MainWindow { get; private set; }
 
         private CornerIcon cornerIcon;
@@ -48,11 +49,11 @@ namespace HexedHero.Blish_HUD.FlipperHelper
         protected override void DefineSettings(SettingCollection settings)
         {
 
-            Settings = new Settings(settings);
-            Settings.CloseWindowOnESC.SettingChanged += delegate
+            ModuleSettings = new ModuleSettings(settings);
+            ModuleSettings.CloseWindowOnESC.SettingChanged += delegate
             {
 
-                MainWindow.CanCloseWithEscape = Settings.CloseWindowOnESC.Value;
+                MainWindow.CanCloseWithEscape = ModuleSettings.CloseWindowOnESC.Value;
 
             };
 
@@ -94,13 +95,13 @@ namespace HexedHero.Blish_HUD.FlipperHelper
                 SavesPosition = true,
                 Id = "FlipperHelperMainWindow",
                 Parent = GameService.Graphics.SpriteScreen,
-                CanCloseWithEscape = Settings.CloseWindowOnESC.Value
+                CanCloseWithEscape = ModuleSettings.CloseWindowOnESC.Value
 
             };
-
+            
             // Add tabs
             MainWindow.Tabs.Add(new Tab(calculatorTexture, () => new CalculatorView(), "Calculator", 1));
-            MainWindow.Tabs.Add(new Tab(settingsTexture, () => new SettingsView(Settings.SettingCollection), "Settings", 4));
+            MainWindow.Tabs.Add(new Tab(settingsTexture, () => new ModuleSettingsView(), "Settings", 2));
 
         }
 

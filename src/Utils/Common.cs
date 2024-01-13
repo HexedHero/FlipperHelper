@@ -14,7 +14,8 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Utils
             RenderTarget2D renderTarget = new RenderTarget2D(
                 originalTexture.GraphicsDevice,
                 newWidth,
-                newHeight);
+                newHeight
+            );
 
             // Set the render target
             originalTexture.GraphicsDevice.SetRenderTarget(renderTarget);
