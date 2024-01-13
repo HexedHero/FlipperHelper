@@ -120,6 +120,8 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
             backgroundTexture?.Dispose();
             backgroundTextureResized?.Dispose();
 
+            instance = null;
+
         }
 
     }
