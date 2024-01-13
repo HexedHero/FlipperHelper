@@ -10,6 +10,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 
         public List<SettingEntry> CloseBehaviourSettings { get; private set; } = new List<SettingEntry>();
         public SettingEntry<bool> CloseWindowOnESC { get; private set; }
+        public SettingEntry<bool> ResetOnWindowClosure { get; private set; }
 
         public ModuleSettings(SettingCollection settingsCollection)
         {
@@ -23,6 +24,15 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
                     true,
                     () => "Allow ESC Closure",
                     () => "Should the window close when you press ESC or not?"
+                )
+            );
+
+            CloseBehaviourSettings.Add(
+                ResetOnWindowClosure = settingsCollection.DefineSetting(
+                    nameof(ResetOnWindowClosure),
+                    false,
+                    () => "Reset on Closure",
+                    () => "Should all values be reset when the window is closed?"
                 )
             );
 

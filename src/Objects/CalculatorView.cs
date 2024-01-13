@@ -128,17 +128,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 
             };
 
-            resetButton.Click += delegate
-            {
-
-                goldBuyTextBox.Text = string.Empty;
-                silverBuyTextBox.Text = string.Empty;
-                copperBuyTextBox.Text = string.Empty;
-                goldSellTextBox.Text = string.Empty;
-                silverSellTextBox.Text = string.Empty;
-                copperSellTextBox.Text = string.Empty;
-
-            };
+            resetButton.Click += delegate { ResetInformation(); };
 
         }
 
@@ -265,7 +255,18 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 
         }
 
-    }
+        public void ResetInformation()
+        {
 
+            goldBuyTextBox.Text = string.Empty;
+            silverBuyTextBox.Text = string.Empty;
+            copperBuyTextBox.Text = string.Empty;
+            goldSellTextBox.Text = string.Empty;
+            silverSellTextBox.Text = string.Empty;
+            copperSellTextBox.Text = string.Empty;
+
+        }
+
+    }
 
 }

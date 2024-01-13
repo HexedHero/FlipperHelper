@@ -27,7 +27,10 @@ namespace HexedHero.Blish_HUD.FlipperHelper
 
         public SettingCollection Settings { get; private set; }
         public ModuleSettings ModuleSettings { get; private set; }
+
         public TabbedWindow2 MainWindow { get; private set; }
+        public CalculatorView CalculatorView { get; private set; }
+        public ModuleSettingsView ModuleSettingsView { get; private set; }
 
         private CornerIcon cornerIcon;
 
@@ -98,10 +101,23 @@ namespace HexedHero.Blish_HUD.FlipperHelper
                 CanCloseWithEscape = ModuleSettings.CloseWindowOnESC.Value
 
             };
-            
+
             // Add tabs
-            MainWindow.Tabs.Add(new Tab(calculatorTexture, () => new CalculatorView(), "Calculator", 1));
-            MainWindow.Tabs.Add(new Tab(settingsTexture, () => new ModuleSettingsView(), "Settings", 2));
+            MainWindow.Tabs.Add(new Tab(calculatorTexture, () => CalculatorView = new CalculatorView(), "Calculator", 1));
+            MainWindow.Tabs.Add(new Tab(settingsTexture, () => ModuleSettingsView = new ModuleSettingsView(), "Settings", 2));
+
+            // Close event
+            MainWindow.Hidden += delegate
+            {
+
+                if (ModuleSettings.ResetOnWindowClosure.Value)
+                {
+
+                    CalculatorView.ResetInformation();
+
+                }
+
+            };
 
         }
 
