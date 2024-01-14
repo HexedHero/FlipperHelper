@@ -13,9 +13,9 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
     public class CalculatorView : View
     {
 
-        private readonly Texture2D coinGoldTexture;
-        private readonly Texture2D coinSilverTexture;
-        private readonly Texture2D coinCopperTexture;
+        private Texture2D coinGoldTexture;
+        private Texture2D coinSilverTexture;
+        private Texture2D coinCopperTexture;
 
         private TextBox goldBuyTextBox;
         private TextBox silverBuyTextBox;
@@ -33,14 +33,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 
         private StandardButton resetButton;
 
-        public CalculatorView()
-        {
-
-            coinGoldTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_gold.png");
-            coinSilverTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_silver.png");
-            coinCopperTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_copper.png");
-
-        }
+        public CalculatorView() { }
 
         protected override void Unload()
         {
@@ -66,6 +59,11 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 
         protected override void Build(Container container)
         {
+
+            // Textures
+            coinGoldTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_gold.png");
+            coinSilverTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_silver.png");
+            coinCopperTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_copper.png");
 
             // Buy row
             buyLabel = new Label()

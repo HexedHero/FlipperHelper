@@ -12,11 +12,18 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
     public class ModuleSettingsView : View
     {
 
+        private FlowPanel SettingFlowPanel;
+        private Panel CloseSettingsPanel;
+        private FlowPanel CloseSettingsFlow;
+
         public ModuleSettingsView() { }
 
         protected override void Unload()
         {
 
+            SettingFlowPanel?.Dispose();
+            CloseSettingsPanel?.Dispose();
+            CloseSettingsFlow?.Dispose();
 
         }
 
@@ -24,7 +31,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
         {
 
             // Full settings panel
-            FlowPanel settingFlowPanel = new FlowPanel()
+            SettingFlowPanel = new FlowPanel()
             {
 
                 CanScroll = true,
@@ -35,7 +42,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
             };
 
             // Close settings panel
-            Panel closeSettingsPanel = new Panel()
+            CloseSettingsPanel = new Panel()
             {
 
                 Title = "Close Behaviour",
@@ -44,18 +51,18 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
                 Collapsed = true,
                 CanCollapse = true,
                 ShowBorder = true,
-                Parent = settingFlowPanel
+                Parent = SettingFlowPanel
 
             };
 
             // Close settings inside
-            FlowPanel closeSettingsFlow = new FlowPanel()
+            CloseSettingsFlow = new FlowPanel()
             {
 
                 CanScroll = true,
                 FlowDirection = ControlFlowDirection.SingleTopToBottom,
                 Size = new Point(215, 78),
-                Parent = closeSettingsPanel
+                Parent = CloseSettingsPanel
 
             };
 
@@ -64,7 +71,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
             foreach (SettingEntry settingEntry in closeBehaviourSettings)
             {
 
-                IView settingView = SettingView.FromType(settingEntry, settingFlowPanel.Width);
+                IView settingView = SettingView.FromType(settingEntry, SettingFlowPanel.Width);
                 // Check if it is renderable
                 if (settingView != null)
                 {
@@ -72,7 +79,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
                     new ViewContainer()
                     {
 
-                        Parent = closeSettingsFlow
+                        Parent = CloseSettingsFlow
 
                     }.Show(settingView);
 
