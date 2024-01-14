@@ -13,12 +13,9 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
 
         // Singleton
         private static Lazy<WindowManager> instance = new Lazy<WindowManager>(() => new WindowManager());
-        public static WindowManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
+        public static WindowManager Instance {
+            get {
+                if (instance == null) {
                     instance = new Lazy<WindowManager>(() => new WindowManager());
                 }
                 return instance.Value;
