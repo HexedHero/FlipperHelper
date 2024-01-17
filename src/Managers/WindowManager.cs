@@ -58,7 +58,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
             {
 
                 Icon = iconTexture,
-                BasicTooltipText = "FlipperHelper",
+                BasicTooltipText = "Flipper Helper",
                 Priority = 1212374129,
                 Parent = GameService.Graphics.SpriteScreen
 
