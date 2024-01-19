@@ -42,11 +42,11 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
             };
 
             // Add close behaviour settings
-            LoadCloseBehaviourSettings(container);
+            AddCloseBehaviourSettings(container);
 
         }
 
-        private void LoadCloseBehaviourSettings(Container container)
+        private void AddCloseBehaviourSettings(Container container)
         {
 
             // Close settings panel
