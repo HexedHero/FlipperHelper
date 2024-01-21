@@ -1,4 +1,5 @@
 ﻿using Blish_HUD;
+using Blish_HUD.Content;
 using Blish_HUD.Controls;
 using Blish_HUD.Graphics.UI;
 using HexedHero.Blish_HUD.FlipperHelper.Enums;
@@ -13,9 +14,9 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
     public class CalculatorView : View
     {
 
-        private Texture2D coinGoldTexture;
-        private Texture2D coinSilverTexture;
-        private Texture2D coinCopperTexture;
+        private AsyncTexture2D coinGoldTexture;
+        private AsyncTexture2D coinSilverTexture;
+        private AsyncTexture2D coinCopperTexture;
 
         private TextBox goldBuyTextBox;
         private TextBox silverBuyTextBox;
@@ -38,9 +39,6 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
         protected override void Unload()
         {
 
-            coinGoldTexture?.Dispose();
-            coinSilverTexture?.Dispose();
-            coinCopperTexture?.Dispose();
             goldBuyTextBox?.Dispose();
             silverBuyTextBox?.Dispose();
             copperBuyTextBox?.Dispose();
@@ -61,9 +59,9 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
         {
 
             // Textures
-            coinGoldTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_gold.png");
-            coinSilverTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_silver.png");
-            coinCopperTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("coin_copper.png");
+            coinGoldTexture = AsyncTexture2D.FromAssetId(156904);
+            coinSilverTexture = AsyncTexture2D.FromAssetId(156907);
+            coinCopperTexture = AsyncTexture2D.FromAssetId(156902);
 
             // Buy row
             buyLabel = new Label()
@@ -128,7 +126,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 
         }
 
-        private void CreateCoinControl(Container container, ECoinType coinType, Texture2D coinTexture, int x, int y, ref TextBox textBox)
+        private void CreateCoinControl(Container container, ECoinType coinType, AsyncTexture2D coinTexture, int x, int y, ref TextBox textBox)
         {
 
             new Image(coinTexture)
@@ -157,7 +155,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 
         }
 
-        private void CreateCoinDisplay(Container container, ECoinType coinType, Texture2D coinTexture, int x, int y, ref Label label)
+        private void CreateCoinDisplay(Container container, ECoinType coinType, AsyncTexture2D coinTexture, int x, int y, ref Label label)
         {
 
             new Image(coinTexture)

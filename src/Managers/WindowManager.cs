@@ -1,10 +1,11 @@
-﻿using Blish_HUD.Controls;
-using Blish_HUD;
+﻿using Blish_HUD;
+using Blish_HUD.Content;
+using Blish_HUD.Controls;
+using FlipperHelper.Utils;
 using HexedHero.Blish_HUD.FlipperHelper.Objects;
-using HexedHero.Blish_HUD.FlipperHelper.Utils;
-using System;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace HexedHero.Blish_HUD.FlipperHelper.Managers
 {
@@ -30,11 +31,11 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
         private CornerIcon cornerIcon;
 
         private Texture2D iconTexture;
-        private Texture2D emblemTexture;
-        private Texture2D calculatorTexture;
-        private Texture2D settingsTexture;
-        private Texture2D backgroundTexture;
-        private Texture2D backgroundTextureResized;
+
+        private AsyncTexture2D emblemTexture;
+        private AsyncTexture2D calculatorTexture;
+        private AsyncTexture2D settingsTexture;
+        private AsyncTexture2D backgroundTexture;
 
         private WindowManager()
         {
@@ -48,10 +49,10 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
 
             // Load needed textures
             iconTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("779571_modified.png");
-            emblemTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("779571.png");
-            calculatorTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("156753.png");
-            settingsTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("155052.png");
-            backgroundTexture = FlipperHelper.Instance.Module.ContentsManager.GetTexture("155985.png");
+            emblemTexture = AsyncTexture2D.FromAssetId(779571);
+            calculatorTexture = AsyncTexture2D.FromAssetId(156753);
+            settingsTexture = AsyncTexture2D.FromAssetId(155052);
+            backgroundTexture = AsyncTexture2D.FromAssetId(155985);
 
             // Make corner icon
             cornerIcon = new CornerIcon()
@@ -67,13 +68,14 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
             cornerIcon.Click += delegate { MainWindow.ToggleWindow(); };
 
             // Make main window
-            backgroundTextureResized = Common.ResizeTexture2D(backgroundTexture, (int)(backgroundTexture.Width / 2.7), (int)(backgroundTexture.Height / 3.1));
-            MainWindow = new TabbedWindow2(backgroundTextureResized,
-                new Rectangle(5, 5, (int)(backgroundTextureResized.Width * 0.935), (int)(backgroundTextureResized.Height * 0.725)),
-                new Rectangle(76, 30, (int)(backgroundTextureResized.Width * 0.78), (int)(backgroundTextureResized.Height * 0.55)))
+            MainWindow = new TabbedWindow2(
+                    ContentService.Textures.TransparentPixel, // See Below
+                    new Rectangle(5, 5, 350, 240), // Window
+                    new Rectangle(70, 30, 300, 180) // Content
+                )
             {
 
-                Emblem = emblemTexture,
+                Emblem = ContentService.Textures.TransparentPixel, // See Below
                 Title = "Flipper Helper",
                 Location = new Point(100, 100),
                 SavesPosition = true,
@@ -82,6 +84,14 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
                 CanCloseWithEscape = ModuleSettingsManager.Instance.ModuleSettings.CloseWindowOnESC.Value
 
             };
+
+            // Add the background - Check if the texture was loaded by Blish or another module or this module at a different runtime else run the injection when it is loaded.
+            void injectBackground() => Reflection.InjectNewBackground(MainWindow, backgroundTexture, new Rectangle(30, 30, 350, 350));
+            if (backgroundTexture.HasSwapped) { injectBackground(); } else { backgroundTexture.TextureSwapped += delegate { injectBackground(); }; }
+
+            // Add the Emblem - Emblem doesn't have AsyncTexture2D support so we need to set it later, same issue as the background
+            void injectEmblem() => MainWindow.Emblem = emblemTexture;
+            if (emblemTexture.HasSwapped) { injectEmblem(); } else { emblemTexture.TextureSwapped += delegate { injectEmblem(); }; }
 
             // Add tabs
             MainWindow.Tabs.Add(new Tab(calculatorTexture, () => CalculatorView = new CalculatorView(), "Calculator", 1));
@@ -122,11 +132,6 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
 
             // Textures
             iconTexture?.Dispose();
-            emblemTexture?.Dispose();
-            calculatorTexture?.Dispose();
-            settingsTexture?.Dispose();
-            backgroundTexture?.Dispose();
-            backgroundTextureResized?.Dispose();
 
             // Reset instance
             instance = null;
