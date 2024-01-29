@@ -5,7 +5,7 @@ using System;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace FlipperHelper.Utils
+namespace HexedHero.Blish_HUD.FlipperHelper.Utils
 {
 
     // Fixes an issue where you cannot update the window's background after its been set,
