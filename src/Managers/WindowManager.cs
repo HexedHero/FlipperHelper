@@ -1,7 +1,7 @@
 ﻿using Blish_HUD;
 using Blish_HUD.Content;
 using Blish_HUD.Controls;
-using FlipperHelper.Utils;
+using HexedHero.Blish_HUD.FlipperHelper.Utils;
 using HexedHero.Blish_HUD.FlipperHelper.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
