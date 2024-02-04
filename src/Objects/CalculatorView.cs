@@ -215,7 +215,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
                 // Get the raw profit
                 int difference = sellValue - buyValue;
 
-                System.Boolean isValidSale = (goldBuyValue != 0 || silverBuyValue != 0 || copperBuyValue != 0) && (goldSellValue != 0 || silverSellValue != 0 || copperSellValue != 0);
+                bool isValidSale = (goldBuyValue != 0 || silverBuyValue != 0 || copperBuyValue != 0) && (goldSellValue != 0 || silverSellValue != 0 || copperSellValue != 0);
 
                 // Get the fees for selling
                 int listingFee = !isValidSale ? 0 : Math.Max(1, (int)Math.Round(sellValue * 0.05)); // 5% with a minimum of 1 copper and rounds up
