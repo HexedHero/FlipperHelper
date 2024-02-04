@@ -1,6 +1,6 @@
 {
   "name": "Flipper Helper",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "namespace": "HexedHero.Blish_HUD.FlipperHelper",
   "package": "FlipperHelper.dll",
   "manifest_version": 1,
