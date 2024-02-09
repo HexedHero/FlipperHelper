@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.Composition;
+﻿using Blish_HUD.Graphics.UI;
 using Blish_HUD.Modules;
 using Blish_HUD.Settings;
-using Blish_HUD.Graphics.UI;
 using HexedHero.Blish_HUD.FlipperHelper.Managers;
+using System.ComponentModel.Composition;
 
 namespace HexedHero.Blish_HUD.FlipperHelper
 {

@@ -4,7 +4,6 @@ using Blish_HUD.Controls;
 using Blish_HUD.Graphics.UI;
 using HexedHero.Blish_HUD.FlipperHelper.Enums;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Linq;
 
