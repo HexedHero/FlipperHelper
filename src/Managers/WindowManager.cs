@@ -71,7 +71,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Managers
             MainWindow = new TabbedWindow2(
                     ContentService.Textures.TransparentPixel, // See Below
                     new Rectangle(5, 5, 350, 240), // Window
-                    new Rectangle(70, 30, 300, 180) // Content
+                    new Rectangle(70, 30, 265, 190) // Content
                 )
             {
 
