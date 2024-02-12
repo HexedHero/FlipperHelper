@@ -1,4 +1,5 @@
-﻿using Blish_HUD.Controls;
+﻿using Blish_HUD.Content;
+using Blish_HUD.Controls;
 using Blish_HUD.Graphics.UI;
 using Blish_HUD.Settings;
 using Blish_HUD.Settings.UI.Views;
@@ -13,8 +14,10 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
     {
 
         private FlowPanel SettingFlowPanel;
-        private Panel CloseSettingsPanel;
-        private FlowPanel CloseSettingsFlow;
+
+        private Panel BehaviourSettingsPanel;
+        private Image BehaviourSettingsPanelIcon;
+        private FlowPanel BehaviourSettingsFlow;
 
         public ModuleSettingsView() { }
 
@@ -22,8 +25,9 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
         {
 
             SettingFlowPanel?.Dispose();
-            CloseSettingsPanel?.Dispose();
-            CloseSettingsFlow?.Dispose();
+            BehaviourSettingsPanel?.Dispose();
+            BehaviourSettingsPanelIcon?.Dispose();
+            BehaviourSettingsFlow?.Dispose();
 
         }
 
@@ -34,49 +38,58 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
             SettingFlowPanel = new FlowPanel()
             {
 
-                CanScroll = true,
                 FlowDirection = ControlFlowDirection.SingleTopToBottom,
                 Size = new Point(260, 180),
                 Parent = container
 
             };
 
-            // Add close behaviour settings
-            AddCloseBehaviourSettings(container);
+            // Add behaviour settings
+            AddBehaviourSettings(container);
 
         }
 
-        private void AddCloseBehaviourSettings(Container container)
+        private void AddBehaviourSettings(Container container)
         {
 
-            // Close settings panel
-            CloseSettingsPanel = new Panel()
+            // Behaviour settings panel
+            BehaviourSettingsPanel = new Panel()
             {
 
-                Title = "Close Behaviour",
-                Size = new Point(225, 125),
+                Title = "    Behaviour Settings",
+                Size = new Point(250, 110),
                 Location = new Point(0, 0),
-                Collapsed = true,
-                CanCollapse = true,
+                Collapsed = false,
+                CanCollapse = false,
                 ShowBorder = true,
-                Parent = SettingFlowPanel
+                Parent = SettingFlowPanel,
 
             };
 
-            // Close settings inside
-            CloseSettingsFlow = new FlowPanel()
+            BehaviourSettingsPanelIcon = new Image()
             {
 
-                CanScroll = true,
+                Location = new Point(12, 8),
+                Size = new Point(20, 20),
+                Texture = AsyncTexture2D.FromAssetId(1234928),
+                Parent = container
+
+            };
+
+            // Behaviour settings inside
+            BehaviourSettingsFlow = new FlowPanel()
+            {
+
                 FlowDirection = ControlFlowDirection.SingleTopToBottom,
+                OuterControlPadding = new Vector2(5, 5),
                 Size = new Point(215, 78),
-                Parent = CloseSettingsPanel
+                Parent = BehaviourSettingsPanel
 
             };
 
             // Add the settings into the panel
-            List<SettingEntry> closeBehaviourSettings = ModuleSettingsManager.Instance.ModuleSettings.CloseBehaviourSettings;
-            foreach (SettingEntry settingEntry in closeBehaviourSettings)
+            List<SettingEntry> behaviourSettings = ModuleSettingsManager.Instance.ModuleSettings.BehaviourSettings;
+            foreach (SettingEntry settingEntry in behaviourSettings)
             {
 
                 IView settingView = SettingView.FromType(settingEntry, SettingFlowPanel.Width);
@@ -87,7 +100,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
                     new ViewContainer()
                     {
 
-                        Parent = CloseSettingsFlow
+                        Parent = BehaviourSettingsFlow
 
                     }.Show(settingView);
 

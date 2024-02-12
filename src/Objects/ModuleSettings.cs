@@ -8,7 +8,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 
         public SettingCollection SettingCollection { get; private set; }
 
-        public List<SettingEntry> CloseBehaviourSettings { get; private set; } = new List<SettingEntry>();
+        public List<SettingEntry> BehaviourSettings { get; private set; } = new List<SettingEntry>();
         public SettingEntry<bool> CloseWindowOnESC { get; private set; }
         public SettingEntry<bool> ResetOnWindowClosure { get; private set; }
 
@@ -17,17 +17,17 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Objects
 
             this.SettingCollection = settingsCollection;
 
-            // Close behaviour settings
-            CloseBehaviourSettings.Add(
+            // Behaviour settings
+            BehaviourSettings.Add(
                 CloseWindowOnESC = settingsCollection.DefineSetting(
                     nameof(CloseWindowOnESC),
                     true,
                     () => "Allow ESC Closure",
-                    () => "Should the window close when you press ESC or not?\n\nWarning: BlishHUD's \"Close Window on Escape\" can override this."
+                    () => "Should the window close when you press ESC or not?\n\nWarning: Blish HUD's \"Close Window on Escape\" can override this."
                 )
             );
 
-            CloseBehaviourSettings.Add(
+            BehaviourSettings.Add(
                 ResetOnWindowClosure = settingsCollection.DefineSetting(
                     nameof(ResetOnWindowClosure),
                     false,
