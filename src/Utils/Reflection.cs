@@ -15,7 +15,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Utils
     public class Reflection
     {
 
-        public static void InjectNewBackground(TabbedWindow2 Window, Texture2D backgroundTexture, Rectangle Bounds)
+        public static void InjectNewBackground(WindowBase2 Window, Texture2D backgroundTexture, Rectangle Bounds)
         {
 
             try
@@ -40,7 +40,7 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Utils
 
         }
 
-        public static void InjectNewBackgroundBounds(TabbedWindow2 Window, Rectangle Bounds)
+        public static void InjectNewBackgroundBounds(WindowBase2 Window, Rectangle Bounds)
         {
 
             try
