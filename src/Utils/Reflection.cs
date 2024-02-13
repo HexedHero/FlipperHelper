@@ -1,9 +1,9 @@
 ﻿using Blish_HUD.Content;
 using Blish_HUD.Controls;
-using System.Reflection;
-using System;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Reflection;
 
 namespace HexedHero.Blish_HUD.FlipperHelper.Utils
 {
@@ -15,35 +15,51 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Utils
     public class Reflection
     {
 
-        public static void InjectNewBackground(TabbedWindow2 Window, AsyncTexture2D backgroundTexture, Rectangle Bounds)
-        {
-
-            InjectNewBackground(Window, (Texture2D)backgroundTexture, Bounds);
-
-        }
-
         public static void InjectNewBackground(TabbedWindow2 Window, Texture2D backgroundTexture, Rectangle Bounds)
         {
 
-            Type baseType = Window.GetType().BaseType;
+            try
+            {
 
-            // Force set the WindowBackground
-            PropertyInfo windowBackgroundPropertyInfo = baseType.GetProperty("WindowBackground", BindingFlags.NonPublic | BindingFlags.Instance);
-            windowBackgroundPropertyInfo.SetValue(Window, (AsyncTexture2D)backgroundTexture);
+                Type baseType = Window.GetType().BaseType;
 
-            // Update the background bounds
-            InjectNewBackgroundBounds(Window, Bounds);
+                // Force set the WindowBackground
+                PropertyInfo windowBackgroundPropertyInfo = baseType.GetProperty("WindowBackground", BindingFlags.NonPublic | BindingFlags.Instance);
+                windowBackgroundPropertyInfo.SetValue(Window, (AsyncTexture2D)backgroundTexture);
+
+                // Update the background bounds
+                InjectNewBackgroundBounds(Window, Bounds);
+
+            }
+            catch (Exception Exception)
+            {
+
+                FlipperHelper.Instance.Logger.Error("Could not inject new background! Exception: " + Exception.Message);
+                FlipperHelper.Instance.Logger.Error(Exception.Message);
+
+            }
 
         }
 
         public static void InjectNewBackgroundBounds(TabbedWindow2 Window, Rectangle Bounds)
         {
 
-            Type baseType = Window.GetType().BaseType;
+            try
+            {
 
-            // Force set the background image bounds
-            PropertyInfo windowContainerPropertyInfo = baseType.GetProperty("BackgroundDestinationBounds", BindingFlags.NonPublic | BindingFlags.Instance);
-            windowContainerPropertyInfo.SetValue(Window, Bounds);
+                Type baseType = Window.GetType().BaseType;
+
+                // Force set the background image bounds
+                PropertyInfo windowContainerPropertyInfo = baseType.GetProperty("BackgroundDestinationBounds", BindingFlags.NonPublic | BindingFlags.Instance);
+                windowContainerPropertyInfo.SetValue(Window, Bounds);
+
+            }
+            catch (Exception Exception)
+            {
+
+                FlipperHelper.Instance.Logger.Error("Could not inject new background bounds! Exception: " + Exception.Message);
+
+            }
 
         }
 

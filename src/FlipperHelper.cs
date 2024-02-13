@@ -1,4 +1,5 @@
-﻿using Blish_HUD.Graphics.UI;
+﻿using Blish_HUD;
+using Blish_HUD.Graphics.UI;
 using Blish_HUD.Modules;
 using Blish_HUD.Settings;
 using HexedHero.Blish_HUD.FlipperHelper.Managers;
@@ -14,6 +15,8 @@ namespace HexedHero.Blish_HUD.FlipperHelper
         // Fake Singleton
         public static FlipperHelper Instance { get; private set; }
         public ModuleParameters Module { get; private set; }
+
+        public readonly Logger Logger = Logger.GetLogger(typeof(FlipperHelper));
 
         [ImportingConstructor]
         public FlipperHelper([Import("ModuleParameters")] ModuleParameters moduleParameters) : base(moduleParameters)
