@@ -35,7 +35,6 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Utils
             {
 
                 FlipperHelper.Instance.Logger.Error("Could not inject new background! Exception: " + Exception.Message);
-                FlipperHelper.Instance.Logger.Error(Exception.Message);
 
             }
 
