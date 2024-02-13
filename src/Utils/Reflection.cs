@@ -63,4 +63,5 @@ namespace HexedHero.Blish_HUD.FlipperHelper.Utils
         }
 
     }
+
 }
